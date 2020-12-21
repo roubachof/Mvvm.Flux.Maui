@@ -1,0 +1,22 @@
+﻿<?xml version="1.0" encoding="UTF-8" ?>
+<Frame x:Class="Symbiot.Mobile.Presentation.CustomViews.Snackbar"
+       xmlns="http://xamarin.com/schemas/2014/forms"
+       xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+       xmlns:behaviors="clr-namespace:Symbiot.Mobile.Presentation.Behaviors;assembly=Symbiot.Mobile"
+       x:Name="RootLayout"
+       Padding="15">
+    <ContentView.Behaviors>
+        <behaviors:TimedVisibilityBehavior VisibilityInMilliseconds="{Binding Source={x:Reference RootLayout}, Path=DisplayDurationMilliseconds}" />
+    </ContentView.Behaviors>
+    <Label Style="{StaticResource TextBody}"
+           HorizontalOptions="Center"
+           VerticalOptions="Center"
+           FontFamily="{Binding Source={x:Reference RootLayout},
+                                Path=FontFamily}"
+           LineBreakMode="WordWrap"
+           MaxLines="8"
+           Text="{Binding Source={x:Reference RootLayout},
+                          Path=Text}"
+           TextColor="{Binding Source={x:Reference RootLayout},
+                               Path=TextColor}" />
+</Frame>

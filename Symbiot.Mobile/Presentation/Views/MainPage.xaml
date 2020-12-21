@@ -1,0 +1,60 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage x:Class="Symbiot.Mobile.Presentation.Views.MainPage"
+             xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:activities="clr-namespace:Symbiot.Mobile.Presentation.Views.Activities;assembly=Symbiot.Mobile"
+             xmlns:converters="clr-namespace:Symbiot.Mobile.Presentation.Converters;assembly=Symbiot.Mobile"
+             xmlns:eShop="clr-namespace:Symbiot.Mobile.Presentation.Views.EShop;assembly=Symbiot.Mobile"
+             xmlns:home="clr-namespace:Symbiot.Mobile.Presentation.Views.Home;assembly=Symbiot.Mobile"
+             xmlns:loc="clr-namespace:Symbiot.Mobile.Localization;assembly=Symbiot.Mobile"
+             xmlns:scenarios="clr-namespace:Symbiot.Mobile.Presentation.Views.Scenarios;assembly=Symbiot.Mobile"
+             xmlns:sho="http://sharpnado.com"
+             xmlns:viewModels="clr-namespace:Symbiot.Mobile.Presentation.ViewModels;assembly=Symbiot.Mobile"
+             x:Name="Root">
+
+    <Grid x:DataType="viewModels:MainPageViewModel">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*" />
+            <RowDefinition Height="{StaticResource HeightBottomBar}" />
+            <RowDefinition Height="{Binding Source={x:Reference Root}, Path=Height, Converter={converters:BottomSafeAreaToGridLengthConverter}}" />
+        </Grid.RowDefinitions>
+
+        <sho:ViewSwitcher x:Name="Switcher"
+                          Animate="False"
+                          SelectedIndex="{Binding SelectedViewModelIndex,
+                                                  Mode=TwoWay}">
+            <sho:LazyView x:TypeArguments="home:HomeSectionView"
+                          BindingContext="{Binding HomeSection}" />
+            <sho:LazyView x:TypeArguments="scenarios:ScenariosSectionView"
+                          BindingContext="{Binding ScenariosSection}" />
+            <sho:LazyView x:TypeArguments="eShop:EShopSectionView"
+                          BindingContext="{Binding EShopSection}" />
+            <sho:LazyView x:TypeArguments="activities:ActivitiesSectionView"
+                          BindingContext="{Binding ActivitiesSection}" />
+        </sho:ViewSwitcher>
+
+
+        <sho:TabHostView Grid.Row="1"
+                         BackgroundColor="{StaticResource PrimaryColor}"
+                         SelectedIndex="{Binding Source={x:Reference Switcher},
+                                                 Path=SelectedIndex,
+                                                 Mode=TwoWay}"
+                         Shades="{StaticResource ShadowTop}"
+                         TabType="Fixed">
+            <sho:TabHostView.Tabs>
+                <sho:BottomTabItem IconImageSource="{StaticResource IconSectionHome}"
+                                   Label="{x:Static loc:GlobalResources.Section_Home_TabText}" />
+                <sho:BottomTabItem IconImageSource="{StaticResource IconSectionScenarios}"
+                                   Label="{x:Static loc:GlobalResources.Section_Scenarios_TabText}" />
+                <sho:BottomTabItem IconImageSource="{StaticResource IconSectionEShop}"
+                                   Label="{x:Static loc:GlobalResources.Section_EShop_TabText}" />
+                <sho:BottomTabItem IconImageSource="{StaticResource IconSectionActivities}"
+                                   Label="{x:Static loc:GlobalResources.Section_Activities_TabText}" />
+            </sho:TabHostView.Tabs>
+        </sho:TabHostView>
+
+        <BoxView Grid.Row="2"
+                 Color="{StaticResource PrimaryColor}" />
+    </Grid>
+
+</ContentPage>

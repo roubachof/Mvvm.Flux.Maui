@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<?xaml-comp compile="true" ?>
+
+<ResourceDictionary xmlns="http://xamarin.com/schemas/2014/forms"
+                    xmlns:sho="http://sharpnado.com">
+
+    <Style TargetType="sho:BottomTabItem">
+        <Setter Property="SelectedTabColor" Value="{StaticResource PrimaryDarkColor}" />
+        <Setter Property="UnselectedLabelColor" Value="{StaticResource PrimaryLightColor}" />
+        <Setter Property="UnselectedIconColor" Value="{StaticResource PrimaryLightColor}" />
+        <Setter Property="FontFamily" Value="Regular" />
+        <Setter Property="LabelSize" Value="14" />
+        <Setter Property="IconSize" Value="22" />
+        <Setter Property="IsTextVisible" Value="True" />
+    </Style>
+
+    <Style TargetType="sho:SegmentedTabItem">
+        <Setter Property="SelectedLabelColor" Value="{StaticResource TextPrimaryDarkColor}" />
+        <Setter Property="UnselectedLabelColor" Value="{StaticResource PrimaryColor}" />
+        <Setter Property="SelectedTabColor" Value="{StaticResource PrimaryColor}" />
+        <Setter Property="FontFamily" Value="FontBold" />
+        <Setter Property="LabelSize" Value="{StaticResource TextSizeSubhead}" />
+    </Style>
+
+</ResourceDictionary>

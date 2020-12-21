@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<?xaml-comp compile="true" ?>
+
+<ResourceDictionary xmlns="http://xamarin.com/schemas/2014/forms"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+                    xmlns:sho="http://sharpnado.com">
+
+    <Style ApplyToDerivedTypes="True"
+           TargetType="sho:Shadows">
+        <Setter Property="CornerRadius" Value="{StaticResource FrameCornerRadius}" />
+    </Style>
+
+    <sho:SingleShade x:Key="ShadowTop"
+                     BlurRadius="6"
+                     Opacity="0.3"
+                     Offset="0,-8"
+                     Color="{StaticResource ShadowsColor}" />
+
+    <sho:SingleShade x:Key="ShadowBottom"
+                     BlurRadius="6"
+                     Opacity="0.1"
+                     Offset="0,5"
+                     Color="{StaticResource ShadowsColor}" />
+
+    <sho:SingleShade x:Key="ShadowAccentBottom"
+                     BlurRadius="6"
+                     Opacity="0.4"
+                     Offset="0,4"
+                     Color="{StaticResource AccentColor}" />
+
+    <sho:SingleShade x:Key="ShadowSegmentedBottom"
+                     BlurRadius="4"
+                     Opacity="0.2"
+                     Offset="0,5"
+                     Color="{StaticResource ShadowsColor}" />
+
+    <sho:SingleShade x:Key="ShadowLightBulbHalo"
+                     BlurRadius="10"
+                     Opacity="0.2"
+                     Offset="0,0"
+                     Color="{StaticResource LightBulbHaloColor}" />
+
+
+    <sho:ImmutableShades x:Key="ShadowNone" />
+
+    <sho:NeumorphismShades x:Key="ShadowNeumorphism" />
+
+    <sho:NeumorphismShades x:Key="ShadowThinNeumorphism"
+                           LowerOffset="8, 6"
+                           UpperOffset="-8,-6" />
+
+</ResourceDictionary>
