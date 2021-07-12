@@ -1,5 +1,3 @@
-using Symbiot.Mobile.Presentation.ViewModels.Common.Validation;
-
 using Xamarin.Forms;
 
 namespace Symbiot.Mobile.Presentation.CustomViews

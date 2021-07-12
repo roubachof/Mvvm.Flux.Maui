@@ -16,20 +16,20 @@ namespace Symbiot.Mobile.Domain.Lights.Mock
     {
         private static readonly ILogger Log = LoggerFactory.GetLogger(nameof(LightServiceMock));
 
-        private readonly RemoteCallEmulator _remoteCallEmulator;
-
-        private readonly Dictionary<int, Light> _lights = new ()
+        private readonly Dictionary<int, Light> _lights = new()
             {
-                { 1, new Light { Id = 1, IsOn = false, Name = "Salon 1", } },
-                { 2, new Light { Id = 2, IsOn = true, Name = "Salon 2", } },
-                { 3, new Light { Id = 3, IsOn = false, Name = "Couloir", } },
-                { 4, new Light { Id = 4, IsOn = false, Name = "Chambre 1", } },
-                { 5, new Light { Id = 5, IsOn = false, Name = "Chambre 2", } },
-                { 6, new Light { Id = 6, IsOn = true, Name = "Salle de bain", } },
-                { 7, new Light { Id = 7, IsOn = false, Name = "Garage", } },
-                { 8, new Light { Id = 8, IsOn = true, Name = "Jardin 1", } },
-                { 9, new Light { Id = 9, IsOn = false, Name = "Jardin 2", } },
+                { 1, new Light(1, "Salon 1", false) },
+                { 2, new Light(2, "Salon 2", true) },
+                { 3, new Light(2, "Couloir", false) },
+                { 4, new Light(2, "Chambre 1", false) },
+                { 5, new Light(2, "Chambre 1", false) },
+                { 6, new Light(2, "Salle de bain", true) },
+                { 7, new Light(2, "Garage", false) },
+                { 8, new Light(2, "Jardin 1", true) },
+                { 9, new Light(2, "Jardin 2", false) },
             };
+
+        private readonly RemoteCallEmulator _remoteCallEmulator;
 
         public LightServiceMock()
         {
@@ -42,7 +42,8 @@ namespace Symbiot.Mobile.Domain.Lights.Mock
         {
             Log.Info("GetLightsAsync()");
 
-            await _remoteCallEmulator.EmulateRemoteCallDefault().ConfigureAwait(false);
+            await _remoteCallEmulator.EmulateRemoteCallDefault()
+                .ConfigureAwait(false);
             var result = _remoteCallEmulator.Clone(_lights.Values.ToList());
 
             Log.Info($"returning {result.Count} lights");
@@ -53,7 +54,8 @@ namespace Symbiot.Mobile.Domain.Lights.Mock
         {
             Log.Info($"GetLightAsync( lightId: {lightId} )");
 
-            await _remoteCallEmulator.EmulateRemoteCallDefault().ConfigureAwait(false);
+            await _remoteCallEmulator.EmulateRemoteCallDefault()
+                .ConfigureAwait(false);
             var result = _remoteCallEmulator.Clone(_lights[lightId]);
 
             return result;
@@ -63,7 +65,8 @@ namespace Symbiot.Mobile.Domain.Lights.Mock
         {
             Log.Info($"UpdateLightAsync( light: {light.Name} )");
 
-            await _remoteCallEmulator.EmulateRemoteCallDefault().ConfigureAwait(false);
+            await _remoteCallEmulator.EmulateRemoteCallDefault()
+                .ConfigureAwait(false);
             _lights[light.Id] = light;
             var result = _remoteCallEmulator.Clone(_lights[light.Id]);
             DispatchLightUpdated(result);

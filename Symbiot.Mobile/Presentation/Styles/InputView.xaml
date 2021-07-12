@@ -2,7 +2,8 @@
 
 <!--<?xaml-comp compile="true" ?>-->
 
-<ResourceDictionary xmlns="http://xamarin.com/schemas/2014/forms" xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" />
+<ResourceDictionary xmlns="http://xamarin.com/schemas/2014/forms"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" />
 
 <!--  all edit fields based on syncfusion controls  -->
 
@@ -14,12 +15,12 @@
 
     <Style TargetType="Entry" ApplyToDerivedTypes="True">
         <Setter Property="FontSize" Value="{StaticResource TextSizeBody}" />
-        <Setter Property="FontFamily" Value="{StaticResource FontRegular}" />
+        <Setter Property="FontFamily" Value="FontRegular" />
     </Style>
 
     <Style TargetType="Editor" ApplyToDerivedTypes="True">
         <Setter Property="FontSize" Value="{StaticResource TextSizeBody}" />
-        <Setter Property="FontFamily" Value="{StaticResource FontRegular}" />
+        <Setter Property="FontFamily" Value="FontRegular" />
     </Style>
 
     <Keyboard x:Key="KeyboardSearch" x:FactoryMethod="Create">
@@ -29,12 +30,12 @@
     </Keyboard>
 
     <Style TargetType="sf:LabelStyle" ApplyToDerivedTypes="True">
-        <Setter Property="FontFamily" Value="{StaticResource FontRegular}" />
+        <Setter Property="FontFamily" Value="FontRegular" />
     </Style>
 
     <sf:LabelStyle x:Key="TextInputHintStyle"
                    FontSize="{StaticResource TextSizeBody}"
-                   FontFamily="{StaticResource FontRegular}" />
+                   FontFamily="FontRegular" />
 
     <Style TargetType="sf:SfTextInputLayout" ApplyToDerivedTypes="True">
         <Setter Property="VerticalOptions" Value="Start" />
@@ -72,7 +73,7 @@
 
     <Style TargetType="cb:SfComboBox">
         <Setter Property="HeightRequest" Value="50" />
-        <Setter Property="FontFamily" Value="{StaticResource FontRegular}" />
+        <Setter Property="FontFamily" Value="FontRegular" />
         <Setter Property="TextSize" Value="{StaticResource TextSizeBody}" />
     </Style>
 
@@ -82,7 +83,7 @@
 
     <Style TargetType="sfn:SfNumericUpDown">
         <Setter Property="HeightRequest" Value="40" />
-        <Setter Property="FontFamily" Value="{StaticResource FontRegular}" />
+        <Setter Property="FontFamily" Value="FontRegular" />
         <Setter Property="FontSize" Value="{StaticResource TextSizeBody}" />
     </Style>
 

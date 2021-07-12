@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<rg:PopupPage x:Class="Symbiot.Mobile.Presentation.Pages.Common.Popup.DialogPopupPage"
+              xmlns="http://xamarin.com/schemas/2014/forms"
+              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+              xmlns:animations="clr-namespace:Rg.Plugins.Popup.Animations;assembly=Rg.Plugins.Popup"
+              xmlns:rg="clr-namespace:Rg.Plugins.Popup.Pages;assembly=Rg.Plugins.Popup"
+              xmlns:shades="clr-namespace:Sharpnado.Shades;assembly=Sharpnado.Shadows"
+              HasSystemPadding="false">
+
+    <rg:PopupPage.Animation>
+        <animations:FadeAnimation DurationIn="50"
+                                  DurationOut="100"
+                                  EasingIn="Linear"
+                                  EasingOut="Linear" />
+    </rg:PopupPage.Animation>
+
+
+    <Frame Margin="20"
+           HorizontalOptions="Fill"
+           VerticalOptions="Center"
+           BackgroundColor="White"
+           CornerRadius="5">
+
+        <Grid x:Name="MainLayout"
+              Margin="20,0"
+              HorizontalOptions="Fill"
+              VerticalOptions="FillAndExpand"
+              x:DataType="popup:ADialogPopupPageViewModel"
+              RowSpacing="10">
+
+            <Grid.RowDefinitions>
+                <RowDefinition Height="50" />
+                <RowDefinition Height="*" />
+                <RowDefinition Height="50" />
+            </Grid.RowDefinitions>
+
+            <Label Grid.Row="0"
+                   Style="{StaticResource PopupTitle}"
+                   Text="{Binding Title}" />
+
+            <BoxView Grid.Row="0" Style="{StaticResource DividerHorizontal}" />
+
+            <Label x:Name="TextContent"
+                   Grid.Row="1"
+                   Style="{StaticResource PopupContent}"
+                   MaxLines="10"
+                   Text="{Binding ContentText}" />
+
+            <StackLayout Grid.Row="2"
+                         Margin="-10,0"
+                         HorizontalOptions="End"
+                         VerticalOptions="Center"
+                         Orientation="Horizontal">
+                <Button x:Name="CancelButton"
+                        Style="{StaticResource ButtonAccentTransparent}"
+                        Margin="0,0,0,10"
+                        Command="{Binding CancelCommand}"
+                        Text="{Binding CancelText}" />
+                <shades:Shadows x:Name="OkButton"
+                                CornerRadius="10"
+                                Shades="{StaticResource ShadowAccentBottom}">
+                    <Button Style="{StaticResource ButtonAccent}"
+                            Margin="0,0,10,10"
+                            Command="{Binding OkCommand}"
+                            Text="{Binding OkText}" />
+                </shades:Shadows>
+            </StackLayout>
+        </Grid>
+    </Frame>
+
+</rg:PopupPage>

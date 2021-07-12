@@ -1,0 +1,142 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage x:Class="Symbiot.Mobile.Presentation.Pages.Home.LightEditPage"
+             xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:conv="clr-namespace:Symbiot.Mobile.Presentation.Converters;assembly=Symbiot.Mobile"
+             xmlns:cv="clr-namespace:Symbiot.Mobile.Presentation.CustomViews;assembly=Symbiot.Mobile"
+             xmlns:home="clr-namespace:Symbiot.Mobile.Presentation.Pages.Home;assembly=Symbiot.Mobile"
+             xmlns:loc="clr-namespace:Symbiot.Mobile.Localization;assembly=Symbiot.Mobile"
+             xmlns:sho="http://sharpnado.com"
+             xmlns:styles="clr-namespace:Symbiot.Mobile.Presentation.Styles;assembly=Symbiot.Mobile"
+             xmlns:tlv="clr-namespace:Sharpnado.Presentation.Forms.CustomViews;assembly=Sharpnado.TaskLoaderView"
+             x:Name="Root"
+             Title="{Binding Title}"
+             x:DataType="home:LightEditPageViewModel">
+    <ContentPage.Resources>
+        <ResourceDictionary>
+
+            <x:Double x:Key="LightSize">200</x:Double>
+
+            <FontImageSource x:Key="IconLightOff"
+                             FontFamily="FontAwesomeRegular"
+                             Glyph="{x:Static styles:IconFont.Lightbulb}"
+                             Size="{StaticResource LightSize}"
+                             Color="{StaticResource LightBulbOffColor}" />
+
+            <FontImageSource x:Key="IconLightOn"
+                             FontFamily="FontAwesomeRegular"
+                             Glyph="{x:Static styles:IconFont.Lightbulb}"
+                             Size="{StaticResource LightSize}"
+                             Color="{StaticResource LightBulbOnColor}" />
+        </ResourceDictionary>
+    </ContentPage.Resources>
+    <ContentPage.Content>
+        <Grid ColumnDefinitions="*,*"
+              ColumnSpacing="10">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="{Binding Source={x:Reference Root}, Path=Height, Converter={conv:TopSafeAreaToGridLengthConverter}, ConverterParameter={StaticResource HeightToolbar}}" />
+                <RowDefinition Height="3*" />
+                <RowDefinition Height="*" />
+            </Grid.RowDefinitions>
+
+            <tlv:TaskLoaderView x:Name="LoaderView"
+                                Grid.Row="1"
+                                Grid.ColumnSpan="2"
+                                Style="{StaticResource TaskLoaderViewPage}"
+                                TaskLoaderNotifier="{Binding Loader}">
+                <Grid Padding="20">
+                    <sho:Shadows Grid.Row="0"
+                                 CornerRadius="100"
+                                 Shades="{StaticResource ShadowNone}">
+                        <sho:Shadows.Triggers>
+                            <DataTrigger Binding="{Binding Loader.Result.IsOn}"
+                                         TargetType="sho:Shadows"
+                                         Value="True">
+                                <Setter Property="Shades" Value="{StaticResource ShadowLightBulbHalo}" />
+                            </DataTrigger>
+                            <DataTrigger Binding="{Binding Loader.Result.IsOn}"
+                                         TargetType="sho:Shadows"
+                                         Value="False">
+                                <Setter Property="Shades" Value="{StaticResource ShadowNone}" />
+                            </DataTrigger>
+                        </sho:Shadows.Triggers>
+                        <BoxView WidthRequest="{StaticResource LightSize}"
+                                 HeightRequest="{StaticResource LightSize}"
+                                 Margin="0,-60,0,0"
+                                 HorizontalOptions="Center"
+                                 VerticalOptions="Center"
+                                 Color="Transparent" />
+                    </sho:Shadows>
+
+                    <Image Grid.Row="0"
+                           WidthRequest="{StaticResource LightSize}"
+                           HeightRequest="{StaticResource LightSize}"
+                           HorizontalOptions="Center"
+                           VerticalOptions="Center"
+                           Source="{StaticResource IconLightOff}">
+                        <Image.GestureRecognizers>
+                            <TapGestureRecognizer Command="{Binding ToggleLightCommand}" />
+                        </Image.GestureRecognizers>
+                        <Image.Triggers>
+                            <DataTrigger Binding="{Binding Loader.Result.IsOn}"
+                                         TargetType="Image"
+                                         Value="True">
+                                <Setter Property="Source" Value="{StaticResource IconLightOn}" />
+                            </DataTrigger>
+                        </Image.Triggers>
+                    </Image>
+
+                </Grid>
+            </tlv:TaskLoaderView>
+
+            <Button Grid.Row="2"
+                    Grid.Column="0"
+                    Style="{StaticResource ButtonRoundAccent}"
+                    HorizontalOptions="End"
+                    VerticalOptions="Start"
+                    Command="{Binding ActionOneCommand}"
+                    IsVisible="{Binding Loader.IsSuccessfullyCompleted}"
+                    Text="Action One" />
+
+            <Button Grid.Row="2"
+                    Grid.Column="1"
+                    Style="{StaticResource ButtonRoundAccent}"
+                    HorizontalOptions="Start"
+                    VerticalOptions="Start"
+                    Command="{Binding ActionTwoCommand}"
+                    IsVisible="{Binding Loader.IsSuccessfullyCompleted}"
+                    Text="Action Two" />
+
+            <cv:Toolbar Title="{Binding Title}"
+                        Grid.Row="0"
+                        Grid.ColumnSpan="2"
+                        BackgroundColor="Transparent"
+                        ForegroundColor="{StaticResource AccentColor}"
+                        ShowBackButton="True">
+                <Button Style="{StaticResource ButtonAccentTransparent}"
+                        HorizontalOptions="End"
+                        VerticalOptions="Center"
+                        BackgroundColor="{StaticResource BackgroundColor}"
+                        Command="{Binding SaveCommand}"
+                        IsVisible="{Binding Loader.IsSuccessfullyCompleted}"
+                        Text="{x:Static loc:GlobalResources.Common_Save}" />
+            </cv:Toolbar>
+
+            <cv:OverlayView Grid.Row="1"
+                            Grid.RowSpan="2"
+                            Grid.ColumnSpan="2"
+                            Style="{StaticResource OverlaySaving}"
+                            IsVisible="{Binding SaveCommand.Notifier.ShowLoader}" />
+
+            <cv:Snackbar Grid.Row="2"
+                         Grid.ColumnSpan="2"
+                         x:DataType="{x:Null}"
+                         BindingContext="{Binding CompositeCommandLoader}"
+                         IsVisible="{Binding ShowError,
+                                             Mode=TwoWay}"
+                         Text="{Binding Error,
+                                        Converter={conv:ExceptionToErrorMessageConverter}}" />
+
+        </Grid>
+    </ContentPage.Content>
+</ContentPage>

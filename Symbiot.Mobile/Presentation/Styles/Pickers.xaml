@@ -6,7 +6,7 @@
                     xmlns:customViews="clr-namespace:Symbiot.Mobile.Presentation.CustomViews;assembly=Symbiot.Mobile">
 
     <Style TargetType="customViews:NullableDatePicker">
-        <Setter Property="FontFamily" Value="{StaticResource FontRegular}" />
+        <Setter Property="FontFamily" Value="FontRegular" />
         <Setter Property="FontSize" Value="{StaticResource TextSizeBody}" />
         <Setter Property="PlaceHolder" Value="--/--/--" />
     </Style>

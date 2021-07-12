@@ -8,11 +8,11 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-[assembly: System.Reflection.AssemblyCompany("Groupe HBF")]
-[assembly: System.Reflection.AssemblyProduct("OtioHome")]
-[assembly: System.Reflection.AssemblyCopyright("Copyright © Groupe HBF 2021")]
-[assembly: System.Reflection.AssemblyFileVersion("2.0.0")]
-[assembly: System.Reflection.AssemblyVersion("2.0.0")]
+[assembly: System.Reflection.AssemblyCompany("CovaSud")]
+[assembly: System.Reflection.AssemblyProduct("TeamCollect")]
+[assembly: System.Reflection.AssemblyCopyright("Copyright © CovaSud 2021")]
+[assembly: System.Reflection.AssemblyFileVersion("1.0.0")]
+[assembly: System.Reflection.AssemblyVersion("1.0.0")]
 [assembly: System.Reflection.AssemblyTitle("Symbiot.Mobile")]
 
 

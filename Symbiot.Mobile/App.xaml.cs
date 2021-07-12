@@ -1,6 +1,11 @@
 using MetroLog;
 using MetroLog.Targets;
 
+using Microsoft.AppCenter;
+using Microsoft.AppCenter.Analytics;
+using Microsoft.AppCenter.Crashes;
+using Microsoft.AppCenter.Distribute;
+
 using Prism;
 using Prism.Ioc;
 
@@ -8,15 +13,17 @@ using Sharpnado.Tasks;
 
 using Symbiot.Mobile.Domain.Lights;
 using Symbiot.Mobile.Domain.Lights.Mock;
+using Symbiot.Mobile.Infrastructure;
 using Symbiot.Mobile.Infrastructure.Logging;
+using Symbiot.Mobile.Presentation.Pages;
+using Symbiot.Mobile.Presentation.Pages.Home;
 using Symbiot.Mobile.Presentation.ViewModels;
-using Symbiot.Mobile.Presentation.ViewModels.Home;
-using Symbiot.Mobile.Presentation.Views;
-using Symbiot.Mobile.Presentation.Views.Home;
 
 using Xamarin.Essentials.Implementation;
 using Xamarin.Essentials.Interfaces;
 using Xamarin.Forms;
+
+using LogLevel = MetroLog.LogLevel;
 
 [assembly: ExportFont("fa_5_pro_solid.otf", Alias = "FontAwesome")]
 [assembly: ExportFont("fa_5_pro_regular.otf", Alias = "FontAwesomeRegular")]

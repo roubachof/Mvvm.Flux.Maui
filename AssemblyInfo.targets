@@ -2,10 +2,10 @@
 <Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
 
   <PropertyGroup>
-    <Copyright>Copyright © Groupe HBF 2021</Copyright>
-    <Version>2.0.0</Version>
-    <Company>Groupe HBF</Company>
-    <Product>OtioHome</Product>
+    <Copyright>Copyright © CovaSud 2021</Copyright>
+    <Version>1.0.0</Version>
+    <Company>CovaSud</Company>
+    <Product>TeamCollect</Product>
     <Description></Description>
   </PropertyGroup>
 

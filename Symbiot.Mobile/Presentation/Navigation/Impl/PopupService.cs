@@ -7,8 +7,7 @@ using MetroLog;
 using Rg.Plugins.Popup.Contracts;
 
 using Symbiot.Mobile.Infrastructure.Logging;
-using Symbiot.Mobile.Presentation.ViewModels.Common.Popup;
-using Symbiot.Mobile.Presentation.Views.Common.Popup;
+using Symbiot.Mobile.Presentation.Pages.Common.Popup;
 
 using Xamarin.Forms;
 

@@ -41,13 +41,16 @@ namespace Symbiot.Mobile.iOS
             Forms.Init();
 
             // Mr Gestures: generated from application name
-            MR.Gestures.iOS.Settings.LicenseKey = "XXXX";
+            // MR.Gestures.iOS.Settings.LicenseKey = "XXXX";
 
             // Pancake
             PancakeViewRenderer.Init();
 
             // Sharpnado
+
+#if RELEASE
             Xamarin.Forms.Nuke.FormsHandler.Init();
+#endif
             Sharpnado.Tabs.iOS.Preserver.Preserve();
             Sharpnado.Shades.iOS.iOSShadowsRenderer.Initialize();
 

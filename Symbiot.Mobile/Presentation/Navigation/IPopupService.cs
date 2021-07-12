@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Threading.Tasks;
 
-using Symbiot.Mobile.Presentation.ViewModels.Common.Popup;
+using Symbiot.Mobile.Presentation.Pages.Common.Popup;
 
 using Xamarin.Forms;
 

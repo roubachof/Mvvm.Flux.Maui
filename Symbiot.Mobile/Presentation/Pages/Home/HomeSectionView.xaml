@@ -1,0 +1,109 @@
+﻿<?xml version="1.0" encoding="UTF-8" ?>
+<cv:ContentPageView x:Class="Symbiot.Mobile.Presentation.Pages.Home.HomeSectionView"
+                    xmlns="http://xamarin.com/schemas/2014/forms"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+                    xmlns:conv="clr-namespace:Symbiot.Mobile.Presentation.Converters;assembly=Symbiot.Mobile"
+                    xmlns:cv="clr-namespace:Symbiot.Mobile.Presentation.CustomViews;assembly=Symbiot.Mobile"
+                    xmlns:lights="clr-namespace:Symbiot.Mobile.Domain.Lights;assembly=Symbiot.Mobile"
+                    xmlns:sho="http://sharpnado.com"
+                    xmlns:tlv="clr-namespace:Sharpnado.Presentation.Forms.CustomViews;assembly=Sharpnado.TaskLoaderView"
+                    xmlns:home="clr-namespace:Symbiot.Mobile.Presentation.Pages.Home;assembly=Symbiot.Mobile"
+                    x:Name="Root"
+                    x:DataType="home:HomeSectionViewModel">
+    <ContentView.Content>
+        <tlv:TaskLoaderView Grid.Row="1"
+                            Style="{StaticResource TaskLoaderViewPage}"
+                            TaskLoaderNotifier="{Binding Loader}">
+            <RefreshView Command="{Binding Loader.RefreshCommand,
+                                           Mode=OneWay}"
+                         IsRefreshing="{Binding Loader.ShowRefresher}"
+                         RefreshColor="{StaticResource AccentColor}">
+
+                <CollectionView Margin="15,0"
+                                ItemsSource="{Binding Loader.Result}"
+                                SelectionMode="None">
+                    <CollectionView.ItemsLayout>
+                        <GridItemsLayout HorizontalItemSpacing="10"
+                                         Orientation="Vertical"
+                                         Span="2"
+                                         VerticalItemSpacing="10" />
+                    </CollectionView.ItemsLayout>
+                    <CollectionView.Header>
+                        <ContentView>
+                            <Label Style="{StaticResource TextHuge}"
+                                   HeightRequest="{Binding Source={x:Reference Root},
+                                                           Path=Height,
+                                                           Converter={conv:TopSafeAreaToDoubleConverter},
+                                                           ConverterParameter=100}"
+                                   Margin="15,0"
+                                   VerticalTextAlignment="End"
+                                   Text="{Binding Title}" />
+                        </ContentView>
+                    </CollectionView.Header>
+                    <CollectionView.ItemTemplate>
+                        <DataTemplate>
+                            <ContentView x:DataType="lights:Light">
+                                <sho:Shadows Margin="15"
+                                             CornerRadius="{StaticResource FrameCornerRadius}"
+                                             Shades="{StaticResource ShadowBottom}">
+                                    <Frame>
+                                        <Grid Padding="10,0,10,10"
+                                              sho:TapCommandEffect.Tap="{Binding Source={RelativeSource AncestorType={x:Type home:HomeSectionViewModel}},
+                                                                                 Path=NavigateToLightEditCommand}"
+                                              sho:TapCommandEffect.TapParameter="{Binding}"
+                                              sho:ViewEffect.TouchFeedbackColor="{StaticResource AccentColor}">
+                                            <Grid.RowDefinitions>
+                                                <RowDefinition Height="100" />
+                                                <RowDefinition Height="20" />
+                                            </Grid.RowDefinitions>
+
+                                            <sho:Shadows Grid.Row="0"
+                                                         Margin="10"
+                                                         CornerRadius="23"
+                                                         Shades="{StaticResource ShadowNone}">
+                                                <sho:Shadows.Triggers>
+                                                    <DataTrigger Binding="{Binding IsOn}"
+                                                                 TargetType="sho:Shadows"
+                                                                 Value="True">
+                                                        <Setter Property="Shades" Value="{StaticResource ShadowLightBulbHalo}" />
+                                                    </DataTrigger>
+                                                    <DataTrigger Binding="{Binding IsOn}"
+                                                                 TargetType="sho:Shadows"
+                                                                 Value="False">
+                                                        <Setter Property="Shades" Value="{StaticResource ShadowNone}" />
+                                                    </DataTrigger>
+                                                </sho:Shadows.Triggers>
+                                                <BoxView WidthRequest="60"
+                                                         HeightRequest="60"
+                                                         HorizontalOptions="Center"
+                                                         VerticalOptions="Start"
+                                                         Color="Transparent" />
+                                            </sho:Shadows>
+
+                                            <Image Grid.Row="0"
+                                                   Style="{StaticResource ImageHuge}"
+                                                   Source="{StaticResource IconLightOff}">
+                                                <Image.Triggers>
+                                                    <DataTrigger Binding="{Binding IsOn}"
+                                                                 TargetType="Image"
+                                                                 Value="True">
+                                                        <Setter Property="Source" Value="{StaticResource IconLightOn}" />
+                                                    </DataTrigger>
+                                                </Image.Triggers>
+                                            </Image>
+
+                                            <Label Grid.Row="1"
+                                                   Style="{StaticResource TextBody}"
+                                                   HorizontalOptions="Center"
+                                                   Text="{Binding Name}" />
+                                        </Grid>
+                                    </Frame>
+                                </sho:Shadows>
+                            </ContentView>
+                        </DataTemplate>
+                    </CollectionView.ItemTemplate>
+                </CollectionView>
+            </RefreshView>
+        </tlv:TaskLoaderView>
+    </ContentView.Content>
+</cv:ContentPageView>

@@ -13,6 +13,6 @@
 [assembly: System.Reflection.AssemblyCopyright("Copyright © CovaSud 2021")]
 [assembly: System.Reflection.AssemblyFileVersion("1.0.0")]
 [assembly: System.Reflection.AssemblyVersion("1.0.0")]
-[assembly: System.Reflection.AssemblyTitle("Symbiot.Mobile.Android")]
+[assembly: System.Reflection.AssemblyTitle("Symbiot.Mobile.iOS")]
 
 
