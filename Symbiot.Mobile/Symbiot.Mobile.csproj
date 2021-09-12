@@ -69,7 +69,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Domain\Lights\Impl\" />
     <Folder Include="Infrastructure\Caching\" />
   </ItemGroup>
 

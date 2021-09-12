@@ -34,7 +34,7 @@ namespace Symbiot.Mobile.Presentation.Pages.Home
 
             Loader = new TaskLoaderNotifier<LightViewModel>();
 
-            SaveCommand = new TaskLoaderCommand(SaveAsync);
+            SaveCommand = new TaskLoaderCommand(SaveAsync, autoRaiseCanExecuteChange: true);
             ToggleLightCommand = new Command(ToggleLight);
 
             ActionOneCommand = new TaskLoaderCommand(

@@ -20,13 +20,13 @@ namespace Symbiot.Mobile.Domain.Lights.Mock
             {
                 { 1, new Light(1, "Salon 1", false) },
                 { 2, new Light(2, "Salon 2", true) },
-                { 3, new Light(2, "Couloir", false) },
-                { 4, new Light(2, "Chambre 1", false) },
-                { 5, new Light(2, "Chambre 1", false) },
-                { 6, new Light(2, "Salle de bain", true) },
-                { 7, new Light(2, "Garage", false) },
-                { 8, new Light(2, "Jardin 1", true) },
-                { 9, new Light(2, "Jardin 2", false) },
+                { 3, new Light(3, "Couloir", false) },
+                { 4, new Light(4, "Chambre 1", false) },
+                { 5, new Light(5, "Chambre 1", false) },
+                { 6, new Light(6, "Salle de bain", true) },
+                { 7, new Light(7, "Garage", false) },
+                { 8, new Light(8, "Jardin 1", true) },
+                { 9, new Light(9, "Jardin 2", false) },
             };
 
         private readonly RemoteCallEmulator _remoteCallEmulator;

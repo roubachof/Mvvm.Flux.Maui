@@ -2,17 +2,18 @@
 <ContentPage x:Class="Symbiot.Mobile.Presentation.Pages.MainPage"
              xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:activities="clr-namespace:Symbiot.Mobile.Presentation.Pages.Activities;assembly=Symbiot.Mobile"
              xmlns:converters="clr-namespace:Symbiot.Mobile.Presentation.Converters;assembly=Symbiot.Mobile"
+             xmlns:eShop="clr-namespace:Symbiot.Mobile.Presentation.Pages.EShop;assembly=Symbiot.Mobile"
+             xmlns:home="clr-namespace:Symbiot.Mobile.Presentation.Pages.Home;assembly=Symbiot.Mobile"
              xmlns:loc="clr-namespace:Symbiot.Mobile.Localization;assembly=Symbiot.Mobile"
+             xmlns:pages="clr-namespace:Symbiot.Mobile.Presentation.Pages;assembly=Symbiot.Mobile"
+             xmlns:scenarios="clr-namespace:Symbiot.Mobile.Presentation.Pages.Scenarios;assembly=Symbiot.Mobile"
              xmlns:sho="http://sharpnado.com"
              xmlns:viewModels="clr-namespace:Symbiot.Mobile.Presentation.ViewModels;assembly=Symbiot.Mobile"
-             xmlns:home="clr-namespace:Symbiot.Mobile.Presentation.Pages.Home;assembly=Symbiot.Mobile"
-             xmlns:scenarios="clr-namespace:Symbiot.Mobile.Presentation.Pages.Scenarios;assembly=Symbiot.Mobile"
-             xmlns:eShop="clr-namespace:Symbiot.Mobile.Presentation.Pages.EShop;assembly=Symbiot.Mobile"
-             xmlns:activities="clr-namespace:Symbiot.Mobile.Presentation.Pages.Activities;assembly=Symbiot.Mobile"
              x:Name="Root">
 
-    <Grid x:DataType="viewModels:MainPageViewModel">
+    <Grid x:DataType="pages:MainPageViewModel">
         <Grid.RowDefinitions>
             <RowDefinition Height="*" />
             <RowDefinition Height="{StaticResource HeightBottomBar}" />
