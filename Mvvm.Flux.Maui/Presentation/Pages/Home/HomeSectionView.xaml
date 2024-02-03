@@ -1,0 +1,105 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<customViews:ContentPageView x:Class="Mvvm.Flux.Maui.Presentation.Pages.Home.HomeSectionView"
+                             xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+                             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+                             xmlns:converters="using:Mvvm.Flux.Maui.Presentation.Converters"
+                             xmlns:customViews="using:Mvvm.Flux.Maui.Presentation.CustomViews"
+                             xmlns:home="using:Mvvm.Flux.Maui.Presentation.Pages.Home"
+                             xmlns:lights="using:Mvvm.Flux.Maui.Domain.Lights"
+                             xmlns:sho="http://sharpnado.com"
+                             xmlns:tlv="clr-namespace:Sharpnado.TaskLoaderView;assembly=Sharpnado.Maui.TaskLoaderView"
+                             x:Name="Root"
+                             x:DataType="home:HomeSectionViewModel">
+    <ContentView.Content>
+        <Grid IgnoreSafeArea="True">
+            <tlv:TemplatedTaskLoader ErrorControlTemplate="{StaticResource ErrorViewTemplate}"
+                                     LoadingControlTemplate="{StaticResource ActivityIndicatorTemplate}"
+                                     TaskLoaderNotifier="{Binding Loader}">
+                <tlv:TemplatedTaskLoader.ResultControlTemplate>
+                    <ControlTemplate>
+                        <ContentView BindingContext="{Binding Source={RelativeSource AncestorType={x:Type home:HomeSectionViewModel}}}"
+                                     CompressedLayout.IsHeadless="True">
+                            <RefreshView Command="{Binding Loader.RefreshCommand,
+                                                           Mode=OneWay}"
+                                         IsRefreshing="{Binding Loader.ShowRefresher}"
+                                         RefreshColor="{StaticResource LightBulbOnColor}">
+
+                                <CollectionView Margin="15,0"
+                                                ItemsSource="{Binding Loader.Result}"
+                                                SelectionMode="None">
+                                    <CollectionView.ItemsLayout>
+                                        <GridItemsLayout HorizontalItemSpacing="10"
+                                                         Orientation="Vertical"
+                                                         Span="2"
+                                                         VerticalItemSpacing="10" />
+                                    </CollectionView.ItemsLayout>
+                                    <CollectionView.Header>
+                                        <ContentView>
+                                            <Label Style="{StaticResource TextHuge}"
+                                                   HeightRequest="{Binding Source={x:Reference Root},
+                                                                           Path=Height,
+                                                                           Converter={converters:TopSafeAreaToDoubleConverter},
+                                                                           ConverterParameter=75}"
+                                                   Margin="15"
+                                                   VerticalTextAlignment="End"
+                                                   Text="{Binding Title}" />
+                                        </ContentView>
+                                    </CollectionView.Header>
+                                    <CollectionView.ItemTemplate>
+                                        <DataTemplate>
+                                            <ContentView x:DataType="lights:Light">
+                                                <Border Margin="10"
+                                                        Background="{StaticResource SurfaceBackgroundColor}"
+                                                        Shadow="{Binding IsOn,
+                                                                         Converter={converters:BoolToShadowResourceConverter IfFalse={x:Null},
+                                                                                                                             IfTrue='ShadowLightOn'}}"
+                                                        StrokeShape="{StaticResource RoundRectangle}"
+                                                        StrokeThickness="0">
+                                                    <Grid Padding="10,0,10,10"
+                                                          sho:Commands.Tap="{Binding Source={RelativeSource AncestorType={x:Type home:HomeSectionViewModel}},
+                                                                                     Path=NavigateToLightEditCommand}"
+                                                          sho:Commands.TapParameter="{Binding}"
+                                                          sho:TouchEffect.Color="{StaticResource AccentColor}">
+                                                        <Grid.RowDefinitions>
+                                                            <RowDefinition Height="100" />
+                                                            <RowDefinition Height="20" />
+                                                        </Grid.RowDefinitions>
+
+                                                        <Image Grid.Row="0"
+                                                               Style="{StaticResource ImageHuge}"
+                                                               Shadow="{Binding IsOn,
+                                                                                Converter={converters:BoolToShadowResourceConverter IfFalse={x:Null},
+                                                                                                                                    IfTrue='ShadowLightBulbHalo'}}"
+                                                               Source="{StaticResource IconLightOff}">
+                                                            <Image.Triggers>
+                                                                <DataTrigger Binding="{Binding IsOn}"
+                                                                             TargetType="Image"
+                                                                             Value="True">
+                                                                    <Setter Property="Source" Value="{StaticResource IconLightOn}" />
+                                                                </DataTrigger>
+                                                            </Image.Triggers>
+                                                        </Image>
+
+                                                        <Label Grid.Row="1"
+                                                               Style="{StaticResource TextBody}"
+                                                               HorizontalOptions="Center"
+                                                               Text="{Binding Name}" />
+                                                    </Grid>
+                                                </Border>
+                                            </ContentView>
+                                        </DataTemplate>
+                                    </CollectionView.ItemTemplate>
+                                </CollectionView>
+                            </RefreshView>
+                        </ContentView>
+                    </ControlTemplate>
+                </tlv:TemplatedTaskLoader.ResultControlTemplate>
+            </tlv:TemplatedTaskLoader>
+
+            <tlv:Snackbar IsVisible="{Binding Loader.ShowErrorNotification,
+                                              Mode=TwoWay}"
+                          Text="{Binding Loader.Error,
+                                         Converter={converters:ExceptionToErrorMessageConverter}}" />
+        </Grid>
+    </ContentView.Content>
+</customViews:ContentPageView>
