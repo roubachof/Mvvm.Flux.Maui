@@ -2,7 +2,6 @@
 
 using Mvvm.Flux.Maui.Domain.Lights;
 using Mvvm.Flux.Maui.Infrastructure;
-using Mvvm.Flux.Maui.Infrastructure.Logging;
 using Mvvm.Flux.Maui.Localization;
 
 using Sharpnado.TaskLoaderView;
@@ -17,7 +16,9 @@ namespace Mvvm.Flux.Maui.Presentation.Pages.Home
 
         private int _lightId;
 
-        public LightEditPageViewModel(INavigationService navigationService, ILightService lightService)
+        public LightEditPageViewModel(
+            INavigationService navigationService, 
+            ILightService lightService)
             : base(navigationService)
         {
             Log.Info("Building LightEditPageViewModel");
@@ -28,7 +29,8 @@ namespace Mvvm.Flux.Maui.Presentation.Pages.Home
 
             Loader = new TaskLoaderNotifier<LightViewModel>();
 
-            SaveCommand = new TaskLoaderCommand(SaveAsync, autoRaiseCanExecuteChange: true);
+            SaveCommand = new TaskLoaderCommand(
+                SaveAsync, autoRaiseCanExecuteChange: true);
             ToggleLightCommand = new Command(ToggleLight);
 
             ActionOneCommand = new TaskLoaderCommand(

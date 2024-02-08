@@ -6,17 +6,13 @@ namespace Mvvm.Flux.Maui.Infrastructure
     {
         public static string ToString(Exception exception)
         {
-            switch (exception)
+            return exception switch
             {
-                case ServerException:
-                    return GlobalResources.Error_Server_Technical;
-                case NetworkException:
-                    return GlobalResources.Error_Network;
-                case LocalizableException localizableException:
-                    return localizableException.Message;
-                default:
-                    return GlobalResources.Error_Unhandled;
-            }
+                ServerException => GlobalResources.Error_Server_Technical,
+                NetworkException => GlobalResources.Error_Network,
+                LocalizableException localizableException => localizableException.Message,
+                _ => GlobalResources.Error_Unhandled,
+            };
         }
     }
 

@@ -34,16 +34,21 @@
                                                          VerticalItemSpacing="10" />
                                     </CollectionView.ItemsLayout>
                                     <CollectionView.Header>
-                                        <ContentView>
-                                            <Label Style="{StaticResource TextHuge}"
+                                        <Grid ColumnDefinitions="80,*">
+                                            <Label Grid.Column="1"
+                                                   Style="{StaticResource TextHuge}"
                                                    HeightRequest="{Binding Source={x:Reference Root},
                                                                            Path=Height,
                                                                            Converter={converters:TopSafeAreaToDoubleConverter},
                                                                            ConverterParameter=75}"
                                                    Margin="15"
-                                                   VerticalTextAlignment="End"
+                                                   VerticalTextAlignment="Center"
                                                    Text="{Binding Title}" />
-                                        </ContentView>
+                                            <Image Grid.Column="0"
+                                                   WidthRequest="80"
+                                                   HeightRequest="80"
+                                                   Source="owner.png" />
+                                        </Grid>
                                     </CollectionView.Header>
                                     <CollectionView.ItemTemplate>
                                         <DataTemplate>

@@ -10,6 +10,8 @@
 # Default severity for analyzer diagnostics - Requires **VS2019 16.5** or later
 dotnet_analyzer_diagnostic.severity = warning
 
+dotnet_diagnostic.IDE0058.severity = none
+
 dotnet_diagnostic.SA1101.severity = none
 
 dotnet_diagnostic.SA1200.severity = none

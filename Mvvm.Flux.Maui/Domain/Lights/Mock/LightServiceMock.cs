@@ -14,6 +14,7 @@ namespace Mvvm.Flux.Maui.Domain.Lights.Mock
                 { 1, new Light(1, "Living Room", false) },
                 { 2, new Light(2, "Living Room 2", true) },
                 { 3, new Light(3, "Corridor", false) },
+                { 14, new Light(14, "Ballroom", false) },
                 { 4, new Light(4, "Master Bedroom", false) },
                 { 5, new Light(5, "Bedroom 2", false) },
                 { 6, new Light(6, "Bedroom 3", false) },

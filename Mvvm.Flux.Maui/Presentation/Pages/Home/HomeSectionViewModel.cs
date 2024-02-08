@@ -6,7 +6,6 @@ using MetroLog;
 
 using Mvvm.Flux.Maui.Domain.Lights;
 using Mvvm.Flux.Maui.Infrastructure;
-using Mvvm.Flux.Maui.Infrastructure.Logging;
 using Mvvm.Flux.Maui.Localization;
 
 using Sharpnado.TaskLoaderView;
@@ -19,7 +18,9 @@ namespace Mvvm.Flux.Maui.Presentation.Pages.Home
 
         private readonly ILightService _lightService;
 
-        public HomeSectionViewModel(INavigationService navigationService, ILightService lightService)
+        public HomeSectionViewModel(
+            INavigationService navigationService,
+            ILightService lightService)
             : base(navigationService)
         {
             Log.Info("Building HomeSectionViewModel");
@@ -67,13 +68,14 @@ namespace Mvvm.Flux.Maui.Presentation.Pages.Home
             return result;
         }
 
-        private void OnLightUpdated(object sender, Light light)
+        private void OnLightUpdated(object? sender, Light light)
         {
             Log.Info($"OnLightUpdated( lightId: {light.Id} )");
 
             var itemList = Loader.Result;
 
-            var matchingViewModel = itemList?.FirstOrDefault(item => item.Id == light.Id);
+            var matchingViewModel = itemList?
+                .FirstOrDefault(item => item.Id == light.Id);
             if (matchingViewModel == null)
             {
                 return;
@@ -83,7 +85,7 @@ namespace Mvvm.Flux.Maui.Presentation.Pages.Home
             itemList[matchingViewModelIndex] = light;
         }
 
-        private Task NavigateToLightEditAsync(Light item)
+        private Task<INavigationResult> NavigateToLightEditAsync(Light item)
         {
             Log.Info($"NavigateToLightEditAsync( id: {item.Id} )");
 

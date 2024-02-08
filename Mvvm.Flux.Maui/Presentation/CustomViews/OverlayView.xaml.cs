@@ -18,7 +18,7 @@ namespace Mvvm.Flux.Maui.Presentation.CustomViews
             typeof(ImageSource),
             typeof(OverlayView));
 
-        private CancellationTokenSource _cts = new();
+        private readonly CancellationTokenSource _cts = new();
 
         public OverlayView()
         {
@@ -26,16 +26,6 @@ namespace Mvvm.Flux.Maui.Presentation.CustomViews
 
             Loaded += OnLoaded;
             Unloaded += OnUnloaded;
-        }
-
-        private void OnLoaded(object? sender, EventArgs e)
-        {
-            TaskMonitor.Create(AnimateImageAsync(_cts.Token));
-        }
-
-        private void OnUnloaded(object? sender, EventArgs e)
-        {
-            _cts.Cancel();
         }
 
         public string Text
@@ -48,6 +38,17 @@ namespace Mvvm.Flux.Maui.Presentation.CustomViews
         {
             get => (ImageSource)GetValue(IconProperty);
             set => SetValue(IconProperty, value);
+        }
+
+        private void OnLoaded(object? sender, EventArgs e)
+        {
+            TaskMonitor.Create(AnimateImageAsync(_cts.Token));
+        }
+
+        private void OnUnloaded(object? sender, EventArgs e)
+        {
+            _cts.Cancel();
+            _cts.Dispose();
         }
 
         private async Task AnimateImageAsync(CancellationToken token)

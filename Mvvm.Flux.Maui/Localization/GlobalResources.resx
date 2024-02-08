@@ -118,45 +118,45 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="Common_Cancel" xml:space="preserve">
-    <value>Annuler</value>
+    <value>Cancel</value>
   </data>
   <data name="Common_Ok" xml:space="preserve">
     <value>OK</value>
   </data>
   <data name="Common_Retry" xml:space="preserve">
-    <value>Réessayer</value>
+    <value>Retry</value>
   </data>
   <data name="Common_Save" xml:space="preserve">
-    <value>Enregistrer</value>
+    <value>Save</value>
   </data>
   <data name="Common_Saving" xml:space="preserve">
-    <value>Enregistrement...</value>
+    <value>Saving...</value>
   </data>
   <data name="Error_Network" xml:space="preserve">
-    <value>Nous n'arrivons pas à joindre notre serveur.
-Veuillez vérifier votre connexion.</value>
+    <value>We cannot reach our server.
+Please check your internet connection.</value>
   </data>
   <data name="Error_Server_Business" xml:space="preserve">
-    <value>Votre demande n'a pas pu être traitée.
-Veuillez vérifier les informations saisies.</value>
+    <value>Your request has not been processed.
+Please check the provided informations.</value>
   </data>
   <data name="Error_Server_Technical" xml:space="preserve">
-    <value>Le serveur a rencontré une erreur technique.
-Nous travaillons sur le problème.</value>
+    <value>Our server raised an internal error.
+We are working on the issue.</value>
   </data>
   <data name="Error_Server_Unknown" xml:space="preserve">
-    <value>Votre demande n'a pas pu être traitée,
-Code erreur : {0}</value>
+    <value>Your request has not been processed,
+Error coce : {0}</value>
   </data>
   <data name="Error_Unhandled" xml:space="preserve">
-    <value>Une erreur inconnue s'est produite.
-Merci de réessayer ultérieurement.</value>
+    <value>An unknown error was raised.
+Please try again later.</value>
   </data>
   <data name="Section_Activities_TabText" xml:space="preserve">
-    <value>Activité</value>
+    <value>Activities</value>
   </data>
   <data name="Section_Activities_Title" xml:space="preserve">
-    <value>Activité</value>
+    <value>Activities</value>
   </data>
   <data name="Section_EShop_TabText" xml:space="preserve">
     <value>E-shop</value>
@@ -165,15 +165,15 @@ Merci de réessayer ultérieurement.</value>
     <value>E-shop</value>
   </data>
   <data name="Section_Home_TabText" xml:space="preserve">
-    <value>Domicile</value>
+    <value>Home</value>
   </data>
   <data name="Section_Home_Title" xml:space="preserve">
     <value>Gerald's Manor</value>
   </data>
   <data name="Section_Scenarios_TabText" xml:space="preserve">
-    <value>Scénarios</value>
+    <value>Scenarios</value>
   </data>
   <data name="Section_Scenarios_Title" xml:space="preserve">
-    <value>Scénarios</value>
+    <value>Scenarios</value>
   </data>
 </root>
